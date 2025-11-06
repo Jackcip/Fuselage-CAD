@@ -49,5 +49,4 @@ right_dome = left_dome.mirror(mirrorPlane="XY").translate((0, 0, -length))
 
 fuselage = body.union(left_dome).union(right_dome)
 
-show_object(fuselage)
 cq.exporters.export(fuselage, "Fuselage.step", cq.exporters.ExportTypes.STEP)
