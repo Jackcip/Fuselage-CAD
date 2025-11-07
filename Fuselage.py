@@ -2,7 +2,7 @@ import cadquery as cq
 import numpy as np
 
 # PARAMETERS
-rad = 10
+rad = 25
 h_ell = 25
 length = 40
 thickness = 1
@@ -12,8 +12,8 @@ def half_ellipse_points(rx, ry, n=20):
     t = np.linspace(0, np.pi/2, n)   
     return [(rx * np.cos(a), ry * np.sin(a)) for a in t]
 
-outer_pts = half_ellipse_points(rad, h_ell, top=True)
-inner_pts = half_ellipse_points(rad - thickness, h_ell - thickness, top=True)
+outer_pts = half_ellipse_points(rad, h_ell)
+inner_pts = half_ellipse_points(rad - thickness, h_ell - thickness)
 
 # DOME 
 sketch = (
@@ -49,4 +49,4 @@ right_dome = left_dome.mirror(mirrorPlane="XY").translate((0, 0, -length))
 fuselage = body.union(left_dome).union(right_dome)
 
 # EXPORT FILE
-cq.exporters.export(fuselage, "Fuselage.step", cq.exporters.ExportTypes.STEP)
+cq.exporters.export(fuselage, "Fuselage.step")
